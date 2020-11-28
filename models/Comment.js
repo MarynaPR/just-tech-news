@@ -10,6 +10,14 @@ Comment.init(
             primaryKey: true,
             autoIncrement: true
         },
+        comment_text: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                // this means the comment must be at least one characters long
+                len: [1]
+            }
+        },
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -24,10 +32,6 @@ Comment.init(
             references: {
                 model: 'post',
                 key: 'id'
-            },
-            validate: {
-                // this means the comment must be at least one characters long
-                len: [1]
             }
         }
     },
